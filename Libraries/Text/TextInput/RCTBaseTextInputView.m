@@ -167,17 +167,6 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithFrame:(CGRect)frame)
   }
 }
 
-- (void)setTextContentType:(NSString *)type
-{
-  #if defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-    if (@available(iOS 10.0, *)) {
-        // Setting textContentType to an empty string will disable any
-        // default behaviour, like the autofill bar for password inputs
-        self.backedTextInputView.textContentType = [type isEqualToString:@"none"] ? @"" : type;
-    }
-  #endif
-}
-
 #pragma mark - RCTBackedTextInputDelegate
 
 - (BOOL)textInputShouldBeginEditing
@@ -332,7 +321,7 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithFrame:(CGRect)frame)
 
   _nativeEventCount++;
 
-  if (_onChange) {
+  if (_onChange && backedTextInputView.markedTextRange == nil) {
     _onChange(@{
        @"text": self.attributedText.string,
        @"target": self.reactTag,
