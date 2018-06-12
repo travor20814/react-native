@@ -1,6 +1,6 @@
 {
-  "name": "react-native-fix-chinese-input-version",
-  "version": "1000.0.0",
+  "name": "react-native",
+  "version": "0.55.4",
   "description": "A framework for building native apps using React and is forked from the origin repo.",
   "license": "MIT",
   "repository": {
